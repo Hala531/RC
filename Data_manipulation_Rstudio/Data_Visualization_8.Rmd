@@ -1,0 +1,44 @@
+---
+title: "Data_Visualization_8"
+author: "LABHALLA Halima"
+date: "`r Sys.Date()`"
+output: html_document
+---
+```{r warning=FALSE, message=FALSE}
+#How to visualize two categorical variables at the same time  (posiion = dodge give us the number of people that have got broxn hair and the number of people that have got black hair by contrast, and that puts the bars next to each other by contrast if i put position = "fill" it's gonna put the bars on top of each other and it's gonna calculat the percentage of people that have got brown hair and the percentage of people that have got black hair whether they are men or women)
+library(tidyverse)
+data()
+starwars
+#exercice 1:
+
+names(starwars)
+starwars %>% 
+  filter(hair_color == "black" | hair_color== "brown") %>% 
+  drop_na(sex) %>% 
+  ggplot(aes(hair_color, fill = sex))+
+  facet_wrap(~hair_color)+
+  geom_bar(position = "fill", alpha = 0.5)+
+  theme_bw()+
+  theme(panel.grid.major = element_blank(),  panel.grid.minor = element_blank()) + 
+  labs(title = "Gender and Hair color", x = "Hair Color", y = "Number")
+  #exercice 2:
+starwars %>% 
+  filter(hair_color == "black" | hair_color== "brown") %>% 
+  drop_na(sex) %>% 
+  ggplot(aes(hair_color, fill = sex))+
+  geom_bar(position = "dodge", alpha = 0.5)+
+  theme_bw()+
+  theme(panel.grid.major = element_blank(),  panel.grid.minor = element_blank()) + 
+  labs(title = "Gender and Hair color", x = "Hair Color", y = "Number")
+#exercice 3:
+starwars %>% 
+  filter(hair_color == "black" | hair_color== "brown") %>% 
+  drop_na(sex) %>% 
+  ggplot(aes(hair_color, fill = sex))+
+  geom_bar(position = "dodge", alpha = 0.5)+
+  theme_bw()+
+  theme(panel.grid.major = element_blank(),  panel.grid.minor = element_blank(), legend.position = "none") + 
+  labs(title = "Gender and Hair color", x = "Hair Color", y = "Number")
+
+```
+

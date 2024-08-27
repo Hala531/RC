@@ -1,0 +1,70 @@
+---
+title: "Data_manipulation_6"
+author: "LABHALLA Halima"
+date: "`r Sys.Date()`"
+output: html_document
+---
+```{r}
+#téléchargement des packages 
+library(dplyr)
+library(tidyverse)
+data()
+View(starwars)
+names(starwars)
+#loops 
+
+#1er exercice : 
+
+for(i in 1:5){
+  print(starwars$name[i])
+}
+
+#2ème exercice 
+
+for (i in 1: length(starwars$height)){
+  print(starwars$height[i])
+}
+
+#3ème exercice 
+
+#create a new blank vector called  tallness 
+tallness <- vector(mode = "numeric", 
+                   length = 5)
+
+#add data points to the new vector 
+for (i in 1:5){
+  tallness[i] <- starwars$height[i]/100
+}
+print(tallness)
+
+# creating a break 
+
+#a loop can be stopped if certain criteria are met in the exemple bellow, when looping through the vector, R will break the loop as soon as x is equal to "Darth Vader"
+
+for(x in starwars$name){
+  print(x)
+  if(x == "Wedge Antilles"){
+    break
+  }
+}
+
+# use next to skip a data point, data points can be skipped by a condition , which if met, will prompt the loop to go to the next iteration and skip the current one. in the example bellow, C-3P0 is skipped 
+
+for(x in starwars$name){
+  if (x=="C-3PO"){
+    next
+  }
+  print(x)
+  if(x=="Darth Vader"){
+    break
+  }
+}
+
+#concatinate and print : this is a lovely feature of looping that allows you to create a text output that is driven by differences in each iteration . the cat function allows you to concatenate orjoin together elements of text. 
+
+for (i in 1:5) {
+  cat ("the hight of", starwars$name[i], "is", tallness[i], "metres/n")
+}
+
+```
+

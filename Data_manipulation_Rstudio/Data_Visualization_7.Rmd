@@ -1,0 +1,42 @@
+---
+title: "Data_Visualization_7"
+author: "LABHALLA Halima"
+date: "`r Sys.Date()`"
+output: html_document
+---
+```{r warning=FALSE, message=FALSE}
+#how to visualize numeric and categorical variable in the same plot 
+library(tidyverse)
+data()
+?msleep
+names(msleep)
+View(msleep)
+#exercice 1
+msleep %>% 
+  drop_na(vore) %>% 
+  ggplot(aes(vore, sleep_total))+
+  geom_boxplot()+
+  coord_flip()+
+  theme_bw()
+#exercice 2
+
+msleep %>% 
+  drop_na(vore) %>% 
+  ggplot(aes( sleep_total))+
+  geom_density()+
+  facet_wrap(~vore)+
+  theme_bw()
+#instead of using te facet wrap and putting it into four different graphs , , im gonna layer the densities on top of each other and give them a color 
+#exercice 3  #if we write color intead of fill it will draw lines in different colors  (this kind of graph is only useful when we've got few categorical variables)
+
+msleep %>% 
+  drop_na(vore) %>% 
+  filter(vore == "herbi" | vore == "omni") %>% 
+  ggplot(aes( sleep_total, fill = vore))+
+  #another way to do the filter is : filter(vore %in% c("carni", "omni"))
+  geom_density(alpha = 0.2)+
+  theme_bw()
+
+
+```
+

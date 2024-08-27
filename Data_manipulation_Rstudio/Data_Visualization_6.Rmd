@@ -1,0 +1,33 @@
+---
+title: "Data_Visualization_6"
+author: "LABHALLA Halima"
+date: "`r Sys.Date()`"
+output: html_document
+---
+```{r warning=FALSE, message=FALSE}
+
+#Two numeric variables and one categorical variable : the tree in this example is a categorical variable __line graphs__  this sign Tree != "2" means Tree doesn' equal to 2
+library(tidyverse)
+data()
+View(Orange)
+names(Orange)
+Orange %>% 
+  filter(Tree != "2") %>% 
+  ggplot(aes(age, circumference))+
+  geom_point()+
+  geom_smooth()+
+  facet_wrap(~Tree)+
+  theme_bw()+
+  labs(title = "Tree age and Circumference")
+
+#exercice 2 #this this time instead of using facets i've included the idea of color is equals Tree as one of the aesthetics
+Orange %>% 
+  filter(Tree!= "1" & Tree != "2") %>% 
+  ggplot(aes(age, circumference, color = Tree))+
+  geom_point(size = 5, alpha = 0.3)+
+  geom_line(Size = 1)+
+  theme_minimal()+
+  labs(title = "Tree age and circumference")
+
+```
+

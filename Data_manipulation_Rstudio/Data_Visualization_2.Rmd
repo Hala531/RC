@@ -1,0 +1,28 @@
+---
+title: "Data_Visualization_2"
+author: "LABHALLA Halima"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
+data()
+? msleep
+View(msleep)
+names(msleep)
+
+#Single categorical variable ( a bar chart is the best chart for a single ctagorical variable cuz we're counting we wanna know within each of these categories how many of the ros or how many of the observations were assigned to that particular category
+
+msleep %>% 
+  drop_na(vore) %>% 
+  ggplot(aes(fct_infreq(vore)))+ #fct_infreq(c'est du plus grand au plus moyen)
+  geom_bar(fill = "#ff33d4")+
+  #coord_flip()
+  theme_bw()+
+  labs(x = "vore", y = NULL, title = "Number of observations per order")
+  
+
+
+```
+

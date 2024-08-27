@@ -1,0 +1,24 @@
+---
+title: "Data_Visualization_4"
+author: "LABHALLA Halima"
+date: "`r Sys.Date()`"
+output: html_document
+---
+```{r warning=FALSE, message=FALSE}
+
+#numeric variable, here we're just dealing with one variable 
+library(tidyverse)
+data()
+names(msleep)
+View(msleep)
+msleep %>% 
+  ggplot(aes(awake))+
+  geom_histogram(binwidth = 2, fill = "#e333ff")+
+  labs(x = "Total sleep", y = NULL, title = "Histogram of Total sleep")+
+  theme_bw()
+
+  
+
+
+```
+

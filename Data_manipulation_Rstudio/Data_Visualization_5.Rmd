@@ -1,0 +1,24 @@
+---
+title: "Data_Visualisation_5"
+author: "LABHALLA Halima"
+date: "`r Sys.Date()`"
+output: html_document
+---
+```{r warning=FALSE, message=FALSE}
+# scatter plot
+# 2 or more numeric variables (multiple numeric variables)
+
+library(tidyverse)
+data()
+names(msleep)
+msleep %>% 
+  filter(bodywt <2) %>% 
+  ggplot(aes(bodywt, brainwt))+
+  geom_point(aes(color = sleep_total, size = awake))+
+  geom_smooth(method = lm, se = FALSE)+ 
+  labs(x = "Body weight", y = "Brain weight", title = "Brain and Body Weight")+
+  theme_minimal()
+
+
+```
+
